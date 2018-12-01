@@ -22,12 +22,12 @@ if (process.argv[2] === "spotify-this-song") {
 
     spotify
         .search({ type: 'track', query: process.argv.slice(3).join(" ") })
-        .then(function (response) {                          
-            // console.log(response.tracks)                       
-            // console.log(response.tracks.items[0].artists
-            // console.log(response.tracks.items[0].album)
-            console.log(response.tracks.items[0].name)
-            // console.log(response.tracks.items[0])
+        .then(function (response) {
+            let sData = response.tracks.items[0]
+            console.log("Artist: " + sData.artists[0].name)
+            console.log("Album: " +sData.album.name)
+            console.log("Song: " +sData.name)
+            console.log("Spotify URL: " +sData.artists[0].href)
         })
         .catch(function (err) {
             console.log(err);
