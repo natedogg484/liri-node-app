@@ -6,7 +6,10 @@ if (process.argv[2] === "concert-this") {
     bandsintown
         .getArtistEventList(process.argv.slice(3).join(" "))
         .then(function (events) {
-            console.log(JSON.stringify(events))
+            console.log("Venue: "+events[0].venue.name)
+            console.log("Location: "+events[0].formatted_location)
+            console.log("Date: "+events[0].formatted_datetime)
+            console.log("Tickets: "+events[0].ticket_url)
         });
 
 }
@@ -25,9 +28,9 @@ if (process.argv[2] === "spotify-this-song") {
         .then(function (response) {
             let sData = response.tracks.items[0]
             console.log("Artist: " + sData.artists[0].name)
-            console.log("Album: " +sData.album.name)
-            console.log("Song: " +sData.name)
-            console.log("Spotify URL: " +sData.artists[0].href)
+            console.log("Album: " + sData.album.name)
+            console.log("Song: " + sData.name)
+            console.log("Spotify URL: " + sData.artists[0].href)
         })
         .catch(function (err) {
             console.log(err);
@@ -47,7 +50,14 @@ if (process.argv[2] === "movie-this") {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log("Title: " + response.data.Title, "Release Year: " + response.data.Year, "Rotten Tomato's rating: " + response.data.Ratings[1].Value, "IMDB rating: " + response.data.imdbRating, "Country: " + response.data.Country, "Language: " + response.data.Language, "Plot: " + response.data.Plot, "Actors: " + response.data.Actors)
+            console.log("Title: " + response.data.Title)
+            console.log( "Release Year: " + response.data.Year) 
+            console.log("Rotten Tomato's rating: " + response.data.Ratings[1].Value) 
+            console.log("IMDB rating: " + response.data.imdbRating) 
+            console.log("Country: " + response.data.Country) 
+            console.log("Language: " + response.data.Language)
+            console.log("Plot: " + response.data.Plot) 
+            console.log("Actors: " + response.data.Actors)
         }
     );
 }
@@ -64,8 +74,11 @@ if (process.argv[2] === "do-what-it-says") {
     spotify
         .search({ type: 'track', query: "I want it that way" })
         .then(function (response) {
-            // console.log(JSON.stringify(response))
-            console.log(JSON.stringify(response))
+            let sData = response.tracks.items[0]
+            console.log("Artist: " + sData.artists[0].name)
+            console.log("Album: " + sData.album.name)
+            console.log("Song: " + sData.name)
+            console.log("Spotify URL: " + sData.artists[0].href)
 
 
         })
